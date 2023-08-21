@@ -6,10 +6,11 @@ let covidAccumuData = {};
 export async function load() {
 	const result = await fetchGlobalCovid19Total();
 	covidAccumuData = buildChartData(result.data);
+	const dateArray = [...covidAccumuData.chartLabels];
 	return {
 		props: {
 			chartData: covidAccumuData,
-			lastUpdate: covidAccumuData.chartLabels.pop()
+			lastUpdate: dateArray.pop()
 		}
 	};
 }
