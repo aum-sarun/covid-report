@@ -1,4 +1,5 @@
 import { fetchGlobalCovid19Total } from '../services/covid19Service';
+import { formatDate } from '../utils/utils';
 
 let covidAccumuData = {};
 
@@ -7,14 +8,19 @@ export async function load() {
 	covidAccumuData = buildChartData(result.data);
 	return {
 		props: {
-			chartData: covidAccumuData
+			chartData: covidAccumuData,
+			lastUpdate: covidAccumuData.chartLabels.pop()
 		}
 	};
 }
 
 function buildChartData(data) {
+	let formattedDatesArray = [];
+	for (const date in data.cases) {
+		formattedDatesArray.push(formatDate(date, 'medium'));
+	}
 	return {
-		chartLabels: Object.keys(data.cases),
+		chartLabels: formattedDatesArray,
 		datasets: [
 			{
 				label: 'Cases',

@@ -31,7 +31,7 @@
 
 <div class="mx-auto max-w-2xl lg:text-center">
 	<h2 class="text-base font-semibold leading-7 text-indigo-600">
-		Covid-19 data accumulation as of last update: [date]
+		Covid-19 data accumulation as of last update: {data.props.lastUpdate}
 	</h2>
 	<label for="daysRange" class="font-light">Show data for the last {covidDaysRange} days:</label>
 	<input

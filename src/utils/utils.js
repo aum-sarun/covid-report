@@ -8,3 +8,11 @@ export function shortenNumber(number) {
 	const scaledNumber = number / scale;
 	return scaledNumber.toFixed(2) + suffix;
 }
+
+export function formatDate(inputDate, format) {
+	if (!['full', 'long', 'medium', 'short'].includes(format)) {
+		throw new Error('The date format is incorrect.');
+	}
+	const date = new Date(inputDate);
+	return new Intl.DateTimeFormat('en-GB', { dateStyle: format }).format(date);
+}
