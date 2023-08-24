@@ -43,7 +43,7 @@ function buildCovidTableData(dateArr, chartDataset) {
 		headerRole: [{ thData: 'Date' }, { thData: 'Cases' }, { thData: 'Deaths' }],
 		tableRoles: []
 	};
-	dateArr.forEach((date, idx) => {
+	dateArr.findLast((date, idx) => {
 		const tableRole = [date, ...chartDataset.map((el) => el.data[idx].toLocaleString())].map(
 			(item) => ({
 				tdData: `<p>${item}</p>`
