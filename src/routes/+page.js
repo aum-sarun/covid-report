@@ -1,13 +1,17 @@
 import { formatDate } from '../utils/utils';
+import { GLOBAL_COVID_19_ACCUMULATED } from '../config/endpointConfig';
 
-export function load({ data }) {
-	const chartData = buildCovidChartData(data.covidAccumuData.data);
-	const lastUpdate = `1`;
+export const load = async ({ fetch }) => {
+	const response = await fetch(GLOBAL_COVID_19_ACCUMULATED);
+	const covidAccumuData = await response.json();
+
+	const chartData = buildCovidChartData(covidAccumuData);
+	const lastUpdate = [...chartData.chartLabels].pop();
 	const tableData = buildCovidTableData(chartData.chartLabels, chartData.datasets);
 	return { chartData, lastUpdate, tableData };
-}
+};
 
-function buildCovidChartData(covidAccumuData) {
+const buildCovidChartData = (covidAccumuData) => {
 	let formattedDatesArray = [];
 	for (const date in covidAccumuData.cases) {
 		formattedDatesArray.push(formatDate(date, 'medium'));
@@ -35,9 +39,9 @@ function buildCovidChartData(covidAccumuData) {
 			// }
 		]
 	};
-}
+};
 
-function buildCovidTableData(dateArr, chartDataset) {
+const buildCovidTableData = (dateArr, chartDataset) => {
 	const tableData = {
 		tableName: '',
 		headerRole: [{ thData: 'Date' }, { thData: 'Cases' }, { thData: 'Deaths' }],
@@ -52,4 +56,4 @@ function buildCovidTableData(dateArr, chartDataset) {
 		tableData.tableRoles.push(tableRole);
 	});
 	return tableData;
-}
+};
