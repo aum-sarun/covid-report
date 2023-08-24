@@ -2,13 +2,26 @@ import { formatDate } from '../utils/utils';
 import { GLOBAL_COVID_19_ACCUMULATED } from '../config/endpointConfig';
 
 export const load = async ({ fetch }) => {
-	const response = await fetch(GLOBAL_COVID_19_ACCUMULATED);
-	const covidAccumuData = await response.json();
+	try {
+		const response = await fetch(GLOBAL_COVID_19_ACCUMULATED);
+		const covidAccumuData = await response.json();
 
-	const chartData = buildCovidChartData(covidAccumuData);
-	const lastUpdate = [...chartData.chartLabels].pop();
-	const tableData = buildCovidTableData(chartData.chartLabels, chartData.datasets);
-	return { chartData, lastUpdate, tableData };
+		const chartData = buildCovidChartData(covidAccumuData);
+		const lastUpdate = [...chartData.chartLabels].pop();
+		const tableData = buildCovidTableData(chartData.chartLabels, chartData.datasets);
+		return { chartData, lastUpdate, tableData };
+	} catch (e) {
+		console.error('Failed to Load Data');
+		return {
+			chartData: { chartLabels: [], datasets: [] },
+			lastUpdate: 'None',
+			tableData: {
+				tableName: '',
+				headerRole: [{ thData: 'Date' }, { thData: 'Cases' }, { thData: 'Deaths' }],
+				tableRoles: []
+			}
+		};
+	}
 };
 
 const buildCovidChartData = (covidAccumuData) => {
