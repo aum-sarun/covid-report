@@ -6,9 +6,17 @@
 
 	export let data;
 	let covidDaysRange = 30;
-	$: chartData.set(filterLengthDate(covidDaysRange));
-	function filterLengthDate(date = 30) {
-		let sliceDate = 30 - date;
+	const covidMaxDaysRange = 30;
+	let tableRoles = data.tableData.tableRoles.slice(covidMaxDaysRange - covidDaysRange);
+	$: {
+		chartData.set(filterLengthDate(covidDaysRange));
+		tableRoles =
+			covidDaysRange !== covidMaxDaysRange
+				? data.tableData.tableRoles.slice(0, -(covidMaxDaysRange - covidDaysRange))
+				: data.tableData.tableRoles;
+	}
+	function filterLengthDate(date) {
+		let sliceDate = covidMaxDaysRange - date;
 		return {
 			chartLabels: data.chartData.chartLabels.slice(sliceDate),
 			datasets: [
@@ -40,7 +48,7 @@
 		name="daysRange"
 		bind:value={covidDaysRange}
 		min="1"
-		max="30"
+		max={covidMaxDaysRange}
 		class="align-middle"
 	/>
 </div>
@@ -49,5 +57,5 @@
 <DataTable
 	tableName={data.tableData.tableName}
 	headerRole={data.tableData.headerRole}
-	tableRoles={data.tableData.tableRoles}
+	{tableRoles}
 />
