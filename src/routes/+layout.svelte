@@ -1,6 +1,7 @@
 <script>
 	import '../app.css';
 	let mobileMenuOpen = false;
+	let myGitRepo = 'https://github.com/aum-sarun/covid-report';
 </script>
 
 <header class="bg-orange-100">
@@ -37,10 +38,23 @@
 				</svg>
 			</button>
 		</div>
-		<div class="hidden lg:flex lg:gap-x-12 lg:basis-3/4">
+		<div class="hidden lg:flex lg:gap-x-12 lg:basis-4/5">
 			<!-- <a href="/" class="text-sm font-semibold leading-6 text-red-900">Home</a>
 			<a href="/chart" class="text-sm font-semibold leading-6 text-red-900">Chart report</a>
 			<a href="/table" class="text-sm font-semibold leading-6 text-red-900">Table report</a> -->
+		</div>
+		<div class="hidden lg:flex lg:flex-1 lg:basis-1/5 lg:justify-end">
+			<a
+				href={myGitRepo}
+				class="text-sm font-semibold leading-6 text-gray-900 flex flex-row items-center"
+				target="_blank"
+			>
+				<small>My GitHub</small><img
+					src="./github-mark.svg"
+					alt="My GitHub"
+					class="h-4 w-auto ml-1"
+				/>
+			</a>
 		</div>
 	</nav>
 
@@ -93,6 +107,14 @@
 								class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
 								>Table report</a
 							> -->
+						</div>
+						<div class="py-6">
+							<a
+								href={myGitRepo}
+								class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex flex-row items-center"
+								target="_blank"
+								><img src="./github-mark.svg" alt="My GitHub" class="h-5 w-auto mr-2" />My GitHub</a
+							>
 						</div>
 					</div>
 				</div>
