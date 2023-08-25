@@ -38,8 +38,8 @@
 			</button>
 		</div>
 		<div class="hidden lg:flex lg:gap-x-12 lg:basis-3/4">
-			<a href="/" class="text-sm font-semibold leading-6 text-red-900">Home</a>
-			<!-- <a href="/chart" class="text-sm font-semibold leading-6 text-red-900">Chart report</a>
+			<!-- <a href="/" class="text-sm font-semibold leading-6 text-red-900">Home</a>
+			<a href="/chart" class="text-sm font-semibold leading-6 text-red-900">Chart report</a>
 			<a href="/table" class="text-sm font-semibold leading-6 text-red-900">Table report</a> -->
 		</div>
 	</nav>
@@ -50,7 +50,7 @@
 			<!-- Background backdrop, show/hide based on slide-over state. -->
 			<div class="fixed inset-0 z-10" />
 			<div
-				class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+				class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
 			>
 				<div class="flex items-center justify-between">
 					<a href="/" class="-m-1.5 p-1.5">
@@ -81,7 +81,7 @@
 							<a
 								href="/"
 								class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-								>Home</a
+								on:click|stopPropagation={() => (mobileMenuOpen = false)}>Home</a
 							>
 							<!-- <a
 								href="/chart"

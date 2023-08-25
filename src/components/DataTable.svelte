@@ -40,14 +40,14 @@
 			</div>
 		{/if}
 		<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-			<div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
+			<div class="inline-block min-w-full shadow-md rounded-lg overflow-y-scroll max-h-96	lg:max-h-none">
 				<table class="min-w-full leading-normal">
 					<thead>
 						<tr>
 							{#each headerRole as headerName}
 								<th
 									class={headerName.thClass ||
-										'px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'}
+										'sticky z-10 top-0 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'}
 								>
 									{@html headerName.thData}
 								</th>
